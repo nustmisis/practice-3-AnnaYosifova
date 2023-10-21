@@ -32,6 +32,13 @@ import re
 
 
 def format_phone_number(text):
-    # ваше решение:
+    reg = r"^(8|\+7)?[\- ]?(\(?(\d{3})\)?)[\- ]?(\d{3})[\- ]?(\d{2})[\- ]?(\d{2})$"
 
-    return "Fail!"
+    match = re.match(reg, text)
+    if not match:
+        return "Fail!"
+
+    groups = match.groups()
+    formatted_phone = f"+7 {groups[2]} {groups[3]}-{groups[4]}-{groups[5]}"
+
+    return formatted_phone
